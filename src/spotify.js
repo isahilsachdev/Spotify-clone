@@ -3,7 +3,7 @@ export const authEndpoint = 'https://accounts.spotify.com/authorize';
 // Replace with your app's client ID, redirect URI and desired scopes
 // const clientId = 'cff76213089a4e228206c8bf120d67cb';
 const clientId = '5b045932c9334bf5a562f87f8f9bb720';
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'https://sahil-spotify.netlify.app/';
 const scopes = [
   'user-read-playback-position',
   'user-read-email',
