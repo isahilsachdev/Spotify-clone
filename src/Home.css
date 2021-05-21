@@ -27,13 +27,12 @@
   padding: 15px;
   margin-right: 15px;
   border-radius: 6px;
-  width: 270px;
+  width: 210px !important;
   height: 320px;
   background: #282828;
 }
 .album__block {
   margin: 20px;
-  width: 210px;
 }
 .artists__block:hover,
 .album__block:hover {
