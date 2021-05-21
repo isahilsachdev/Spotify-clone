@@ -51,6 +51,7 @@ function Home({ s, flag, setFlag }) {
               }
             >
               <img src={item.images[0].url} alt='artist' />
+              <br />
               <strong>ARTIST</strong>
               <h3>{item.name}</h3>
               <div className='artists__generes'>
@@ -75,6 +76,7 @@ function Home({ s, flag, setFlag }) {
               onClick={() => changePlaylist(item.id)}
             >
               <img src={item?.images[0].url} alt='artist' />
+              <br />
               <strong>PLAYLIST</strong>
               <h3>{item.name}</h3>
               <div style={{ color: 'gray' }}>{item.description}</div>
