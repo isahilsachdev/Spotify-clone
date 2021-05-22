@@ -28,7 +28,25 @@ const BodyArtist = (spotify) => {
         });
       });
   };
-
+  const playSong = (id) => {
+    spotify
+      .play({
+        uris: [`spotify:track:${id}`],
+      })
+      .then((res) => {
+        spotify.getMyCurrentPlayingTrack().then((r) => {
+          dispatch({
+            type: 'SET_ITEM',
+            item: r.item,
+          });
+          dispatch({
+            type: 'SET_PLAYING',
+            playing: true,
+          });
+        });
+      });
+  };
+  console.log('artist album', artistAlbum);
   return (
     <div className='body'>
       <Header spotify={spotify} />
@@ -41,10 +59,7 @@ const BodyArtist = (spotify) => {
       </div>
       <div className='body__songs'>
         <div className='body__icons'>
-          <PlayCircleFilledIcon
-            className='body__shuffle'
-            onClick={() => playPlaylist}
-          />
+          <PlayCircleFilledIcon className='body__shuffle' />
           <FavoriteIcon fontSize='large' />
           <MoreHorizIcon />
         </div>
@@ -56,8 +71,14 @@ const BodyArtist = (spotify) => {
             <div key={album.id} className='album__block'>
               <img src={album.images[0].url} alt='artist' />
               <br />
-              <strong>ALBUM</strong>
-              <p>{album.name}</p>
+              <strong style={{ color: '#1db954' }}>ALBUM</strong>
+              <br />
+              <h3>{album.name}</h3>
+              {album.total_tracks && (
+                <p style={{ color: 'gray' }}>
+                  Total tracks : {album.total_tracks}
+                </p>
+              )}
             </div>
           );
         })}

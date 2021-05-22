@@ -28,7 +28,7 @@
   border-radius: 6px;
   width: 210px;
   height: 320px;
-  margin: 20px;
+  margin: 20px 20px 20px 15px;
   background: #282828;
 }
 .artists__block:hover,

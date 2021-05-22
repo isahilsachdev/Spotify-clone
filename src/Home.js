@@ -46,7 +46,7 @@ function Home({ s, flag, setFlag }) {
             >
               <img src={item.images[0].url} alt='artist' />
               <br />
-              <strong>ARTIST</strong>
+              <strong style={{ color: '#1db954' }}>ARTIST</strong>
               <h3>{item.name}</h3>
               <div className='artists__generes'>
                 {item.genres.map((gen, i) => {
@@ -72,7 +72,7 @@ function Home({ s, flag, setFlag }) {
             >
               <img src={item?.images[0].url} alt='artist' />
               <br />
-              <strong>PLAYLIST</strong>
+              <strong style={{ color: '#1db954' }}>PLAYLIST</strong>
               <h3>{item.name}</h3>
               <div style={{ color: 'gray' }}>{item.description}</div>
             </div>
