@@ -15,7 +15,9 @@ const SearchPage = ({ spotify }) => {
   const [{ user, searchSongs, top_artists }, dispatch] = useStateValue();
   const [info, setInfo] = React.useState({});
   const [id, setId] = React.useState(null);
-  const HandleSearch = async () => {
+
+  const HandleSearch = async (e) => {
+    e.preventDefault();
     setSearchFlag((prev) => true);
     spotify.searchTracks(searchSong).then((res) => {
       setId((prev) => res.tracks.items[0].artists[0].id);
@@ -25,6 +27,8 @@ const SearchPage = ({ spotify }) => {
       });
     });
   };
+  console.log(info.name, searchSong);
+
   React.useEffect(() => {
     spotify.getArtist(id).then((res) => {
       console.log(res);
@@ -33,6 +37,7 @@ const SearchPage = ({ spotify }) => {
   }, [id, dispatch]);
 
   const playSong = (id) => {
+    console.log(id);
     spotify
       .play({
         uris: [`spotify:track:${id}`],
@@ -53,17 +58,16 @@ const SearchPage = ({ spotify }) => {
   return (
     <div className='body'>
       <div className='header'>
-        <div className='header__left'>
+        <form onSubmit={HandleSearch} className='header__left'>
           <SearchIcon />
           <input
             placeholder='Search for Artists, Songs, or Podcasts'
             type='text'
             onChange={(e) => setSearchSong(e.target.value)}
+            // onKeyDown={HandleSearch}
           />
-          <button className='header__button' onClick={HandleSearch}>
-            Search
-          </button>
-        </div>
+          <input type='submit' className='header__button' value='Search' />
+        </form>
         <div className='header__right'>
           <Avatar alt={user?.display_name} src={user?.images[0]?.url} />
           <h4>{user?.display_name}</h4>
