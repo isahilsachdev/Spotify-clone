@@ -4,17 +4,13 @@ import SidebarOption from './SidebarOption';
 import HomeIcon from '@material-ui/icons/Home';
 import SearchIcon from '@material-ui/icons/Search';
 import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
-import { getTokenFromResponse } from './spotify';
+
 import { useStateValue } from './StateProvider';
 
 function Sidebar({ s, flag, setFlag }) {
   const [{ playlists, top_artists }, dispatch] = useStateValue();
 
-  const changeFlag = () => {
-    setFlag((prev) => 1);
-  };
   const changePlaylist = (id) => {
-    // console.log('flag', flag, setFlag());
     setFlag((prev) => 2);
     s.getPlaylist(id).then((response) =>
       dispatch({
@@ -26,7 +22,6 @@ function Sidebar({ s, flag, setFlag }) {
   const changeArtistAlbum = (id, name, image) => {
     setFlag((prev) => 3);
     s.getArtistAlbums(id).then((response) => {
-      console.log(response);
       dispatch({
         type: 'SET_ARTIST_ALBUM',
         artistAlbum: response,
@@ -37,6 +32,7 @@ function Sidebar({ s, flag, setFlag }) {
       });
     });
   };
+
   return (
     <div className='sidebar'>
       <img
@@ -44,9 +40,21 @@ function Sidebar({ s, flag, setFlag }) {
         src='https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg'
         alt=''
       />
-      <SidebarOption changeFlag={changeFlag} Icon={HomeIcon} option='Home' />
-      <SidebarOption Icon={SearchIcon} option='Search' />
-      <SidebarOption Icon={LibraryMusicIcon} option='Your Library' />
+      <SidebarOption
+        changeFlag={() => setFlag((prev) => 1)}
+        Icon={HomeIcon}
+        option='Home'
+      />
+      <SidebarOption
+        changeFlag={() => setFlag((prev) => 4)}
+        Icon={SearchIcon}
+        option='Search'
+      />
+      <SidebarOption
+        changeFlag={() => setFlag((prev) => 1)}
+        Icon={LibraryMusicIcon}
+        option='Your Library'
+      />
       <br />
       <strong className='sidebar__title'>PLAYLISTS</strong>
       <hr />

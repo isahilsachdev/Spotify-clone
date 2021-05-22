@@ -3,10 +3,6 @@ import { useStateValue } from './StateProvider';
 import './Body.css';
 import './Home.css';
 import Header from './Header';
-import SongRow from './SongRow';
-import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 function Home({ s, flag, setFlag }) {
   const [{ top_artists, playlists }, dispatch] = useStateValue();
@@ -20,11 +16,9 @@ function Home({ s, flag, setFlag }) {
       })
     );
   };
-  console.log(top_artists);
   const changeArtistAlbum = (id, name, image) => {
     setFlag((prev) => 3);
     s.getArtistAlbums(id).then((response) => {
-      console.log(response);
       dispatch({
         type: 'SET_ARTIST_ALBUM',
         artistAlbum: response,
@@ -55,8 +49,8 @@ function Home({ s, flag, setFlag }) {
               <strong>ARTIST</strong>
               <h3>{item.name}</h3>
               <div className='artists__generes'>
-                {item.genres.map((gen) => {
-                  return <p> {gen} </p>;
+                {item.genres.map((gen, i) => {
+                  return <p key={i}> {gen} </p>;
                 })}
               </div>
             </div>
@@ -72,6 +66,7 @@ function Home({ s, flag, setFlag }) {
         {playlists?.items?.map((item) => {
           return (
             <div
+              key={item.id}
               className='artists__block'
               onClick={() => changePlaylist(item.id)}
             >

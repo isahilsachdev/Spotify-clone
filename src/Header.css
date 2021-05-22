@@ -10,7 +10,8 @@
 }
 
 .header__left {
-  flex: 0.5;
+  flex: 0.4;
+  min-width: 180px;
   display: flex;
   background-color: white;
   padding: 10px;
@@ -18,9 +19,13 @@
   color: gray;
   align-items: center;
 }
-
+.header__button {
+  border: none;
+  border-radius: 4px;
+}
 .header__left > input {
   border: none;
+  outline: none;
   width: 100%;
 }
 

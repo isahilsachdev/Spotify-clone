@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useStateValue } from './StateProvider';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
@@ -12,12 +12,10 @@ import './Footer.css';
 import { Grid, Slider } from '@material-ui/core';
 
 function Footer({ spotify }) {
-  const [{ token, item, playing }, dispatch] = useStateValue();
+  const [{ item, playing }, dispatch] = useStateValue();
 
   useEffect(() => {
     spotify.getMyCurrentPlaybackState().then((r) => {
-      console.log(r);
-
       dispatch({
         type: 'SET_PLAYING',
         playing: r.is_playing,
@@ -28,7 +26,7 @@ function Footer({ spotify }) {
         item: r.item,
       });
     });
-  }, [spotify]);
+  }, [spotify, dispatch]);
 
   const handlePlayPause = () => {
     if (playing) {
@@ -80,7 +78,7 @@ function Footer({ spotify }) {
         <img
           className='footer__albumLogo'
           src={item?.album.images[0].url}
-          alt={item?.name}
+          alt=''
         />
         {item ? (
           <div className='footer__songInfo'>

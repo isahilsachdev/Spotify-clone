@@ -1,10 +1,8 @@
-import axios from 'axios';
 import React from 'react';
 import { useStateValue } from './StateProvider';
 import './Body.css';
 import './Home.css';
 import Header from './Header';
-import SongRow from './SongRow';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -12,17 +10,13 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 const BodyArtist = (spotify) => {
   const [{ artistAlbum, artistDescription }, dispatch] = useStateValue();
 
-  console.log('artistAlbum in artist album', artistAlbum);
-  console.log('artistDescription in artist album', artistDescription);
   const playPlaylist = (id) => {
     spotify
       .play({
-        // we have to change here uri
-        context_uri: `spotify:playlist:30NLuCzTLTOBcuyi2QiUrG`,
+        context_uri: `spotify:playlist:{id}`,
       })
       .then((res) => {
         spotify.getMyCurrentPlayingTrack().then((r) => {
-          // console.log('this is the current playing tracks', r);
           dispatch({
             type: 'SET_ITEM',
             item: r.item,
@@ -35,24 +29,6 @@ const BodyArtist = (spotify) => {
       });
   };
 
-  const playSong = (id) => {
-    spotify
-      .play({
-        uris: [`spotify:track:${id}`],
-      })
-      .then((res) => {
-        spotify.getMyCurrentPlayingTrack().then((r) => {
-          dispatch({
-            type: 'SET_ITEM',
-            item: r.item,
-          });
-          dispatch({
-            type: 'SET_PLAYING',
-            playing: true,
-          });
-        });
-      });
-  };
   return (
     <div className='body'>
       <Header spotify={spotify} />
@@ -67,7 +43,7 @@ const BodyArtist = (spotify) => {
         <div className='body__icons'>
           <PlayCircleFilledIcon
             className='body__shuffle'
-            onClick={playPlaylist}
+            onClick={() => playPlaylist}
           />
           <FavoriteIcon fontSize='large' />
           <MoreHorizIcon />

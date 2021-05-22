@@ -1,5 +1,3 @@
-import { findAllByDisplayValue } from '@testing-library/react';
-
 export const initialState = {
   user: null,
   playlists: [],
@@ -10,6 +8,7 @@ export const initialState = {
   item: null,
   artistAlbum: [],
   artistDescription: [],
+  searchSongs: [],
 };
 
 const reducer = (state, action) => {
@@ -73,6 +72,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         artistDescription: action.artistDescription,
+      };
+
+    case 'SET_SEARCH_SONG':
+      return {
+        ...state,
+        searchSongs: action.searchSongs,
       };
 
     default:

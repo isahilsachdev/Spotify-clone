@@ -18,22 +18,11 @@ function App() {
     let _token = hash.access_token;
 
     if (_token) {
-      console.log('token', _token);
-
       s.setAccessToken(_token);
       dispatch({
         type: 'SET_TOKEN',
         token: _token,
       });
-      // albums
-      // s.getArtistAlbums(
-      //   '43ZHCT0cAZBISjO8DG9PnE',
-      //   { limit: 10, offset: 20 },
-      //   function (err, data) {
-      //     if (err) console.error(err);
-      //     else console.log('Artist albums', data);
-      //   }
-      // );
 
       // individual playlist fetch in Body.js(discover weekly)
       s.getUserPlaylists().then((playlists) => {
@@ -56,7 +45,6 @@ function App() {
       });
 
       s.getMe().then((user) => {
-        // console.log(user);
         dispatch({
           type: 'SET_USER',
           user,

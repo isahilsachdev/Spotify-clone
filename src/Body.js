@@ -13,12 +13,10 @@ function Body({ spotify }) {
   const playPlaylist = (id) => {
     spotify
       .play({
-        // we have to change here uri
         context_uri: `spotify:playlist:30NLuCzTLTOBcuyi2QiUrG`,
       })
       .then((res) => {
         spotify.getMyCurrentPlayingTrack().then((r) => {
-          // console.log('this is the current playing tracks', r);
           dispatch({
             type: 'SET_ITEM',
             item: r.item,
@@ -49,7 +47,6 @@ function Body({ spotify }) {
         });
       });
   };
-  console.log('discover_weekly', discover_weekly);
   return (
     <div className='body'>
       <Header spotify={spotify} />
