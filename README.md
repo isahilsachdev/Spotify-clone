@@ -1,8 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Demo link 🔗 https://sahil-spotify.netlify.app/
 
-## Available Scripts
-
-In the project directory, you can run:
 ## Steps
 
 1. You have to clone this repository in any folder.
