@@ -1,6 +1,6 @@
 .artists__container {
   overflow-x: overlay;
-  overflow-y: hidden;
+  overflow-y: overlay;
   display: flex;
 }
 .album__container {

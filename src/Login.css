@@ -3,10 +3,12 @@
   background-color: black;
   height: 100vh;
   place-items: center;
+  width: 100%;
 }
 
 .login > img {
-  height: 200px;
+  /* height: 45%; */
+  width: 45%;
 }
 
 .login > a {

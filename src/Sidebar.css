@@ -10,7 +10,11 @@
   background-color: #000;
   overflow-y: overlay;
 }
-
+@media only screen and (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+}
 .sidebar__title {
   margin-left: 10px;
   padding: 5px;
