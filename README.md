@@ -1,7 +1,23 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ## Demo link
 🔗 https://sahil-spotify.netlify.app/
-![Spotify](https://www.howtogeek.com/wp-content/uploads/2020/06/xSptoify-logo-vertical-with-text-on-black.png.pagespeed.gp+jp+jw+pj+ws+js+rj+rp+rw+ri+cp+md.ic.CEQf1vNU7m.png)
+
+### Spotify
+![Screenshot (704)](https://user-images.githubusercontent.com/73214085/119253487-16cba000-bbcf-11eb-8752-2164cf43799c.png)
+
+### Home Page
+![Screenshot (705)](https://user-images.githubusercontent.com/73214085/119253475-0a474780-bbcf-11eb-948f-d7be9dde2b98.png)
+
+### Artist Page
+![Screenshot (706)](https://user-images.githubusercontent.com/73214085/119253480-103d2880-bbcf-11eb-8c77-06cfa46eebc2.png)
+
+### Playlists Page
+![Screenshot (707)](https://user-images.githubusercontent.com/73214085/119253484-129f8280-bbcf-11eb-905a-1ef8ba302cef.png)
+
+### Search Page
+![Screenshot (708)](https://user-images.githubusercontent.com/73214085/119253486-1501dc80-bbcf-11eb-9c6e-899b667e1a05.png)
+
+
 
 ## Steps
 
