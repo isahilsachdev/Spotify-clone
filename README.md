@@ -1,6 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ## Demo link
 🔗 https://sahil-spotify.netlify.app/
+![Spotify](https://www.howtogeek.com/wp-content/uploads/2020/06/xSptoify-logo-vertical-with-text-on-black.png.pagespeed.gp+jp+jw+pj+ws+js+rj+rp+rw+ri+cp+md.ic.CEQf1vNU7m.png)
 
 ## Steps
 
