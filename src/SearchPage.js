@@ -35,7 +35,6 @@ const SearchPage = ({ spotify }) => {
   };
 
   const playSong = (id) => {
-    console.log(id);
     spotify
       .play({
         uris: [`spotify:track:${id}`],
@@ -53,7 +52,6 @@ const SearchPage = ({ spotify }) => {
         });
       });
   };
-  console.log(info.name, searchSong);
   return (
     <div className='body'>
       <div className='header'>

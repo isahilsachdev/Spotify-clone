@@ -6,7 +6,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 function Header({ spotify, flag, setFlag }) {
   const [{ user }] = useStateValue();
-  console.log(flag, setFlag);
+
   return (
     <div className='header'>
       <div className='emptyBox'></div>
