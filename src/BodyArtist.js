@@ -7,7 +7,7 @@ import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
-const BodyArtist = (spotify) => {
+const BodyArtist = ({ spotify, flag, setFlag }) => {
   const [{ artistAlbum, artistDescription }, dispatch] = useStateValue();
 
   const playPlaylist = (id) => {
@@ -46,10 +46,9 @@ const BodyArtist = (spotify) => {
         });
       });
   };
-  console.log('artist album', artistAlbum);
   return (
     <div className='body'>
-      <Header spotify={spotify} />
+      <Header spotify={spotify} flag={flag} setFlag={setFlag} />
       <div className='body__info'>
         <img src={artistDescription[1]} alt='artist' />
         <div className='body__infoText'>

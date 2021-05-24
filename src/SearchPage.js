@@ -16,6 +16,12 @@ const SearchPage = ({ spotify }) => {
   const [info, setInfo] = React.useState({});
   const [id, setId] = React.useState(null);
 
+  React.useEffect(() => {
+    spotify.getArtist(id).then((res) => {
+      setInfo({ url: res.images[0].url, name: res.name, type: res.type });
+    });
+  }, [id, dispatch]);
+
   const HandleSearch = async (e) => {
     e.preventDefault();
     setSearchFlag((prev) => true);
@@ -27,14 +33,6 @@ const SearchPage = ({ spotify }) => {
       });
     });
   };
-  console.log(info.name, searchSong);
-
-  React.useEffect(() => {
-    spotify.getArtist(id).then((res) => {
-      console.log(res);
-      setInfo({ url: res.images[0].url, name: res.name, type: res.type });
-    });
-  }, [id, dispatch]);
 
   const playSong = (id) => {
     console.log(id);
@@ -55,6 +53,7 @@ const SearchPage = ({ spotify }) => {
         });
       });
   };
+  console.log(info.name, searchSong);
   return (
     <div className='body'>
       <div className='header'>
@@ -64,9 +63,13 @@ const SearchPage = ({ spotify }) => {
             placeholder='Search for Artists, Songs, or Podcasts'
             type='text'
             onChange={(e) => setSearchSong(e.target.value)}
-            // onKeyDown={HandleSearch}
           />
-          <input type='submit' className='header__button' value='Search' />
+          <input
+            style={{ fontweight: '700' }}
+            type='submit'
+            className='header__button'
+            value='Search'
+          />
         </form>
         <div className='header__right'>
           <Avatar alt={user?.display_name} src={user?.images[0]?.url} />
@@ -76,14 +79,14 @@ const SearchPage = ({ spotify }) => {
       {/* header end */}
       {!searchFlag && !id ? (
         <div className='body__info'>
-          <img src={top_artists?.items[0].images[0].url} alt='artist' />
+          <img src={top_artists?.items[0].images[0].url} alt='' />
           <div className='body__infoText'>
             <h2>SEARCH YOUR FAVOURITE ARTIST OR SONGS</h2>
           </div>
         </div>
       ) : (
         <div className='body__info'>
-          <img src={info.url} alt='artist' />
+          <img src={info.url} alt='' />
           <div className='body__infoText'>
             <strong style={{ textTransform: 'uppercase' }}>{info.type}</strong>
             <h2>{info.name}</h2>

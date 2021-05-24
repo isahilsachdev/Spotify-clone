@@ -15,9 +15,9 @@ function Player({ spotify, flag, setFlag }) {
         {flag === 1 ? (
           <Home s={spotify} flag={flag} setFlag={setFlag} />
         ) : flag === 2 ? (
-          <Body spotify={spotify} />
+          <Body spotify={spotify} flag={flag} setFlag={setFlag} />
         ) : flag === 3 ? (
-          <BodyArtist spotify={spotify} />
+          <BodyArtist spotify={spotify} flag={flag} setFlag={setFlag} />
         ) : (
           <SearchPage spotify={spotify} flag={flag} setFlag={setFlag} />
         )}

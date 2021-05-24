@@ -31,7 +31,7 @@ function Home({ s, flag, setFlag }) {
   };
   return (
     <div className='body'>
-      <Header spotify={s} />
+      <Header spotify={s} flag={flag} setFlag={setFlag} />
       <h1 className='artists__head'>Artists</h1>
       <br />
       <div className='artists__container'>

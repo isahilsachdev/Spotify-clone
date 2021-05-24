@@ -7,7 +7,7 @@ import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
-function Body({ spotify }) {
+function Body({ spotify, flag, setFlag }) {
   const [{ discover_weekly }, dispatch] = useStateValue();
 
   const playPlaylist = (id) => {
@@ -49,7 +49,7 @@ function Body({ spotify }) {
   };
   return (
     <div className='body'>
-      <Header spotify={spotify} />
+      <Header spotify={spotify} flag={flag} setFlag={setFlag} />
 
       <div className='body__info'>
         <img src={discover_weekly?.images[0].url} alt='' />

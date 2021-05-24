@@ -19,15 +19,40 @@
   color: gray;
   align-items: center;
 }
-.header__button {
-  border: none;
-  border-radius: 4px;
-  width: 100px !important;
+.emptyBox {
+  display: flex;
+  flex: 0.5;
+}
+.searchBox {
+  display: none;
+}
+@media only screen and (max-width: 600px) {
+  .searchBox {
+    display: flex;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    border-radius: 8px;
+    background-color: #1db954;
+    font-weight: 600;
+  }
+  .emptyBox {
+    display: none;
+  }
 }
 .header__left > input {
   border: none;
   outline: none;
   width: 100%;
+}
+.header__button {
+  /* border: none; */
+  border-radius: 4px;
+  width: 100px !important;
+  background-color: white !important;
+  height: 90%;
+  font-weight: 700px;
 }
 
 .header__right > h4 {

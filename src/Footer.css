@@ -20,7 +20,6 @@
   width: 300px;
   flex: 0.3;
 }
-
 .footer__green {
   color: #1ed15e;
 }
@@ -65,4 +64,18 @@
 
 .footer__songInfo > p {
   font-size: 12px;
+}
+
+@media only screen and (max-width: 600px) {
+  .footer__left {
+    flex: 0.3;
+    width: 150px;
+  }
+  .footer__center {
+    flex: 0.3;
+    padding: 0 60px;
+  }
+  .footer__right {
+    display: none;
+  }
 }
