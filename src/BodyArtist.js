@@ -50,7 +50,7 @@ const BodyArtist = ({ spotify, flag, setFlag }) => {
     <div className='body'>
       <Header spotify={spotify} flag={flag} setFlag={setFlag} />
       <div className='body__info'>
-        <img src={artistDescription[1]} alt='artist' />
+        <img src={artistDescription[1]} alt='' />
         <div className='body__infoText'>
           <strong>ARTIST</strong>
           <h2>{artistDescription[0]}</h2>

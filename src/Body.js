@@ -29,24 +29,6 @@ function Body({ spotify, flag, setFlag }) {
       });
   };
 
-  const playSong = (id) => {
-    spotify
-      .play({
-        uris: [`spotify:track:${id}`],
-      })
-      .then((res) => {
-        spotify.getMyCurrentPlayingTrack().then((r) => {
-          dispatch({
-            type: 'SET_ITEM',
-            item: r.item,
-          });
-          dispatch({
-            type: 'SET_PLAYING',
-            playing: true,
-          });
-        });
-      });
-  };
   return (
     <div className='body'>
       <Header spotify={spotify} flag={flag} setFlag={setFlag} />
