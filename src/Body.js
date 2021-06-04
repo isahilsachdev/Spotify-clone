@@ -7,13 +7,34 @@ import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
-function Body({ spotify, flag, setFlag }) {
+function Body({ spotify }) {
   const [{ discover_weekly }, dispatch] = useStateValue();
 
   const playPlaylist = (id) => {
     spotify
       .play({
+        // we have to change here uri
         context_uri: `spotify:playlist:30NLuCzTLTOBcuyi2QiUrG`,
+      })
+      .then((res) => {
+        spotify.getMyCurrentPlayingTrack().then((r) => {
+          // console.log('this is the current playing tracks', r);
+          dispatch({
+            type: 'SET_ITEM',
+            item: r.item,
+          });
+          dispatch({
+            type: 'SET_PLAYING',
+            playing: true,
+          });
+        });
+      });
+  };
+
+  const playSong = (id) => {
+    spotify
+      .play({
+        uris: [`spotify:track:${id}`],
       })
       .then((res) => {
         spotify.getMyCurrentPlayingTrack().then((r) => {
@@ -28,10 +49,10 @@ function Body({ spotify, flag, setFlag }) {
         });
       });
   };
-
+  console.log('discover_weekly', discover_weekly);
   return (
     <div className='body'>
-      <Header spotify={spotify} flag={flag} setFlag={setFlag} />
+      <Header spotify={spotify} />
 
       <div className='body__info'>
         <img src={discover_weekly?.images[0].url} alt='' />
