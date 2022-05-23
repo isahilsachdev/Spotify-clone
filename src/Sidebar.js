@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Sidebar.css';
 import SidebarOption from './SidebarOption';
 import HomeIcon from '@material-ui/icons/Home';
@@ -9,9 +9,11 @@ import { useStateValue } from './StateProvider';
 
 function Sidebar({ s, flag, setFlag }) {
   const [{ playlists, top_artists }, dispatch] = useStateValue();
+  const [currentSidebarOption, setCurrentSidebarOption] = useState('');
 
-  const changePlaylist = (id) => {
+  const changePlaylist = (id, name) => {
     setFlag((prev) => 2);
+    name && setCurrentSidebarOption(name);
     s.getPlaylist(id).then((response) =>
       dispatch({
         type: 'SET_DISCOVER_WEEKLY',
@@ -21,6 +23,7 @@ function Sidebar({ s, flag, setFlag }) {
   };
   const changeArtistAlbum = (id, name, image) => {
     setFlag((prev) => 3);
+    name && setCurrentSidebarOption(name);
     s.getArtistAlbums(id).then((response) => {
       dispatch({
         type: 'SET_ARTIST_ALBUM',
@@ -56,19 +59,20 @@ function Sidebar({ s, flag, setFlag }) {
         option='Your Library'
       />
       <br />
-      <strong className='sidebar__title'>PLAYLISTS</strong>
+      {playlists?.items?.length && <strong className='sidebar__title'>PLAYLISTS</strong>}
       <hr />
       {playlists?.items?.map((playlist, i) => (
         <div
           key={i}
-          onClick={() => changePlaylist(playlist.id)}
+          onClick={() => changePlaylist(playlist.id, playlist.name)}
           className='sidebarOption'
+          style={{color: `${currentSidebarOption === playlist.name ? 'white' : ''}`} }
         >
           <p>{playlist.name}</p>
         </div>
       ))}
       <br />
-      <strong className='sidebar__title'>ARTISTS</strong>
+      {top_artists?.items?.length && <strong className='sidebar__title'>ARTISTS</strong>}
       <hr />
       {top_artists?.items?.map((artist, i) => (
         <div
@@ -77,6 +81,7 @@ function Sidebar({ s, flag, setFlag }) {
             changeArtistAlbum(artist.id, artist.name, artist.images[0].url)
           }
           className='sidebarOption'
+          style={{color: `${currentSidebarOption === artist.name ? 'white' : ''}`} }
         >
           <p>{artist.name}</p>
         </div>

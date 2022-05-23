@@ -49,7 +49,7 @@ function Body({ spotify }) {
         });
       });
   };
-  console.log('discover_weekly', discover_weekly);
+
   return (
     <div className='body'>
       <Header spotify={spotify} />

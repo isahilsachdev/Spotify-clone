@@ -15,6 +15,7 @@ const SearchPage = ({ spotify }) => {
   const [{ user, searchSongs, top_artists }, dispatch] = useStateValue();
   const [info, setInfo] = React.useState({});
   const [id, setId] = React.useState(null);
+  const [isError, setIsError] = React.useState(false);
 
   React.useEffect(() => {
     spotify.getArtist(id).then((res) => {
@@ -26,11 +27,17 @@ const SearchPage = ({ spotify }) => {
     e.preventDefault();
     setSearchFlag((prev) => true);
     spotify.searchTracks(searchSong).then((res) => {
-      setId((prev) => res.tracks.items[0].artists[0].id);
+      setId((prev) => res?.tracks?.items[0]?.artists[0].id);
+      setIsError(false);
+      if (!res?.tracks?.items?.length) {
+        setIsError(true);
+      }
       dispatch({
         type: 'SET_SEARCH_SONG',
-        searchSongs: res.tracks.items,
+        searchSongs: res.tracks?.items,
       });
+    }).catch(err => {
+      setIsError(true);
     });
   };
 
@@ -72,6 +79,9 @@ const SearchPage = ({ spotify }) => {
         <div className='header__right'>
           <Avatar alt={user?.display_name} src={user?.images[0]?.url} />
           <h4>{user?.display_name}</h4>
+          <div onClick={() => window.location.reload()} style={{ color: '#1db954', cursor: 'pointer' }} className='header__right'>
+            <h4>Log out</h4>
+          </div>
         </div>
       </div>
       {/* header end */}
@@ -80,6 +90,13 @@ const SearchPage = ({ spotify }) => {
           <img src={top_artists?.items[0].images[0].url} alt='' />
           <div className='body__infoText'>
             <h2>SEARCH YOUR FAVOURITE ARTIST OR SONGS</h2>
+          </div>
+        </div>
+      ) : isError ? (
+        <div>
+          <img style={{ width: '150px' }} src='/favicon.ico' alt='no result found' />
+          <div className='body__infoText'>
+            <strong style={{ textTransform: 'uppercase' }}>No result found</strong>
           </div>
         </div>
       ) : (
@@ -93,11 +110,13 @@ const SearchPage = ({ spotify }) => {
       )}
       {/* searched songs information */}
       <div className='body__songs'>
-        <div className='body__icons'>
-          <PlayCircleFilledIcon className='body__shuffle' />
-          <FavoriteIcon fontSize='large' />
-          <MoreHorizIcon />
-        </div>
+        {!isError && (
+          <div className='body__icons'>
+            <PlayCircleFilledIcon className='body__shuffle' />
+            <FavoriteIcon fontSize='large' />
+            <MoreHorizIcon />
+          </div>
+        )}
         {searchSongs?.map((item) => (
           <SongRowSearch key={item.id} playSong={playSong} track={item} />
         ))}

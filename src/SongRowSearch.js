@@ -7,7 +7,7 @@ const SongRowSearch = ({ track, playSong }) => {
       <div className='songRow' onClick={() => playSong(track.id)}>
         <img
           className='songRow__album'
-          src={track.album.images[0].url}
+          src={track?.album?.images.length ? track.album.images[0].url : '/favicon.ico'}
           alt=''
         />
         <div className='songRow__info'>

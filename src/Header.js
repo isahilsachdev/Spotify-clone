@@ -16,6 +16,9 @@ function Header({ spotify, flag, setFlag }) {
       <div className='header__right'>
         <Avatar alt={user?.display_name} src={user?.images[0]?.url} />
         <h4>{user?.display_name}</h4>
+        <div onClick={() => window.location.reload()} style={{ color: '#1db954', cursor: 'pointer' }} className='header__right'>
+          <h4>Log out</h4>
+        </div>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import './SongRow.css';
 function SongRow({ track, playSong }) {
   return (
     <div className='songRow' onClick={() => playSong(track.id)}>
-      <img className='songRow__album' src={track.album.images[0].url} alt='' />
+      <img className='songRow__album' src={track?.album?.images.length ? track.album.images[0].url : '/favicon.ico'} alt='song-img' />
       <div className='songRow__info'>
         <h1>{track.name}</h1>
         <p>
