@@ -1,7 +1,12 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 ## Demo link
 🔗 https://sahil-spotify.netlify.app/
-
+## NOTE: 
+  
+  1. To play song in spotify clone, open https://open.spotify.com/ and play any song and then pause
+  2. Come back to clone and play any song you want.
+  3. You can only play songs if you have spotify premium account. ( SPOTIFY POLICY )
 ### Spotify
 ![Screenshot (704)](https://user-images.githubusercontent.com/73214085/119253487-16cba000-bbcf-11eb-8752-2164cf43799c.png)
 
